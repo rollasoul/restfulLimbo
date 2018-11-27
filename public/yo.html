@@ -1,0 +1,58 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/RESTful.css">
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+</head>
+<body>
+    <div class="row" style="text-align: center; margin-right: 20%; margin-left: 20%;">
+        <div class="column">
+            <p>What's my LIMBO state?
+                <div id="container"></div>
+            </p>
+        </div>
+        <script type="text/javascript">
+        function getState() {
+            $(document).ready(function(){
+                $.ajax({
+                    url: "http://localhost:3000/url",
+                    dataType: 'json',
+                    cache: false,
+                    async: true,
+                    success: function(data) {
+                        //alert("Temperature is: " + data.switchMain + ", " + data.heightAdjust);
+                        if (data.switchMain == 1) {
+                            $('#container').html(" stick is on");
+                        } else {
+                            //$('#container').html(" stick is off")
+                        };
+                        if (data.heightAdjust == 1) {
+                            $('#container').html(" stick is adjusting height");
+                        } else {
+                            //$('#container').html(" stick is locked in position")
+                        };
+                        if (data.collisionDetect == 1) {
+                            $('#container').html(" stick was touched");
+                        } else {
+                            //$('#container').html(" stick is untouched")
+                        };
+                        if (data.alarmOn == 1) {
+                            $('#container').html(" stick is blinking, Alarm!");
+                        } else {
+                            //$('#container').html(" stick is not blinking")
+                        };
+                        if (data.homeSet == 1) {
+                            //$('#container').html(" stick is in home position");
+                        } else {
+                            //$('#container').html(" stick is in game position")
+                        };
+                    },
+                    error: function() {
+                        alert("error");
+                    }
+                });
+            });
+        }
+        setInterval(function() { getState() }, 0);
+        </script>
+    </body>
+    </html>
