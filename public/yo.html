@@ -7,10 +7,61 @@
     <div class="row" style="text-align: center; margin-right: 20%; margin-left: 20%;">
         <div class="column">
             <p>What's my LIMBO state?
+                <button id="buttonSwitch">on</button>
+                <button id="buttonHeight">lower</button>
+                <button id="buttonReset">reset</button>
                 <div id="container"></div>
             </p>
         </div>
         <script type="text/javascript">
+        //button test
+
+        const buttonSwitch = document.getElementById('buttonSwitch');
+        buttonSwitch.addEventListener('click', function(e) {
+          fetch('/switchMain', {method: 'POST'})
+            .then(function(response) {
+              if(response.ok) {
+                console.log('switchMain is on');
+                return;
+              }
+              throw new Error('Request failed.');
+            })
+            .catch(function(error) {
+              console.log(error);
+            });
+        });
+
+        const buttonHeight = document.getElementById('buttonHeight');
+        buttonHeight.addEventListener('click', function(e) {
+          fetch('/heightAdjust', {method: 'POST'})
+            .then(function(response) {
+              if(response.ok) {
+                console.log('heightAdjust is on');
+                return;
+              }
+              throw new Error('Request failed.');
+            })
+            .catch(function(error) {
+              console.log(error);
+            });
+        });
+
+        const buttonReset = document.getElementById('buttonReset');
+        buttonReset.addEventListener('click', function(e) {
+          fetch('/homeSet', {method: 'POST'})
+            .then(function(response) {
+              if(response.ok) {
+                console.log('homeSet is on');
+                return;
+              }
+              throw new Error('Request failed.');
+            })
+            .catch(function(error) {
+              console.log(error);
+            });
+        });
+
+        // get state
         function getState() {
             $(document).ready(function(){
                 $.ajax({
@@ -41,7 +92,7 @@
                             //$('#container').html(" stick is not blinking")
                         };
                         if (data.homeSet == 1) {
-                            //$('#container').html(" stick is in home position");
+                            $('#container').html(" stick is in home position");
                         } else {
                             //$('#container').html(" stick is in game position")
                         };

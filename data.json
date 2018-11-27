@@ -1,6 +1,6 @@
 {
     "switchMain": 1,
-    "heightAdjust": 1,
+    "heightAdjust": 0,
     "collisionDetect": 0,
     "alarmOn": 0,
     "homeSet": 0

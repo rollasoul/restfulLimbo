@@ -45,3 +45,20 @@ app.get('/yo', function (req, res, next) {
 	var fileToSend = "yo.html";
 	res.sendFile(fileToSend, {root: './public'});
 });
+
+// button part
+// alter state of stick
+app.post('/switchMain', (req, res, next) => {
+  state.switchMain = 1;
+  console.log(state.switchMain);
+});
+
+app.post('/heightAdjust', (req, res, next) => {
+  state.heightAdjust = 1;
+  console.log(state.heightAdjust);
+});
+
+app.post('/homeSet', (req, res, next) => {
+  state.homeSet = 1;
+  console.log(state.homeSet);
+});
